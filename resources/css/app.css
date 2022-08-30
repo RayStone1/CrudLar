@@ -1,0 +1,24 @@
+a{
+    color: #000;
+    text-decoration: none;
+}
+a:hover{
+    color: #4a5568;
+}
+body{
+    background-color:#fff;
+}
+.register_form,.login_form input{
+    font-size: 20px;
+}
+.login_form  form{
+    margin-top: 10em;
+}
+.login_form .form_input{
+    border: none;
+    border-bottom: 2px solid #000;
+}
+.login_form input:hover,input:focus{
+
+    outline: none;
+}
