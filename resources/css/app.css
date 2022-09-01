@@ -5,14 +5,23 @@ a{
 a:hover{
     color: #4a5568;
 }
+.form-control:focus{
+    box-shadow: none;
+
+}
 body{
     background-color:#fff;
 }
+.px-sm {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
 .register_form,.login_form input{
     font-size: 20px;
+
 }
-.login_form  form{
-    margin-top: 10em;
+.login_form{
+    margin-top: 20em;
 }
 .login_form .form_input{
     border: none;

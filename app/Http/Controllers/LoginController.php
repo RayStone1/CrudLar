@@ -14,11 +14,8 @@ class LoginController extends Controller
     {
         return view('login');
     }
-    public function login_user(Request $request){
+    public function login(Request $request){
 
-        if(Auth::check()){
-            return redirect(route('home'));
-        }
         $user=$request->only(['login','password']);
 
         if(Auth::attempt($user)){

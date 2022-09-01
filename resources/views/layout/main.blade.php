@@ -23,13 +23,14 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><h5>Pricing</h5></a>
+                        <a class="nav-link" href="{{route('posts')}}"><h5>Посты</h5></a>
                     </li>
                 </ul>
 
                 <div class="user d-flex align-items-center justify-content-between">
                     @auth
-                        <h5 class="p-3">Здравствуйте,{{ Auth::user()->name }}</h5>
+
+                        <h5 class="p-3"><a href="{{route('cabinet')}}">Личный кабинет</a></h5>
                         <h5>|</h5>
                         <a href="{{route('logout')}}" class="p-3"><h5 class="p-3">Выход</h5></a>
                     @else

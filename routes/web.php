@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,13 +20,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 })->name('home');
-Route::get('/register', [RegisterController::class,'show'])->name('register');
-Route::get('/login', [LoginController::class,'show'])->name('login');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/register', [RegisterController::class,'show'])->name('register');
+    Route::get('/login', [LoginController::class,'show'])->name('login');
+});
+Route::get('/cabinet', [PostController::class,'show'])->name('cabinet')->middleware('user.check');
+Route::get('/posts', [PostController::class,'index'])->name('posts');
 
-Route::post('/register', [RegisterController::class,'register_user'])->name('register_user');
-Route::post('/login', [LoginController::class,'login_user'])->name('login_user');
-Route::get('/logout', function () {
-    Auth::logout();
-    return redirect('/');
-})->name('logout');
+//Аутентификация
+Route::post('/register', [RegisterController::class,'register'])->name('register_user');
+Route::post('/login', [LoginController::class,'login'])->name('login_user');
+Route::get('/logout', [LogoutController::class,'logout'])->name('logout');
 
+Route::name('post.')->group(function (){
+    Route::post('/create', [PostController::class,'create'])->name('create');
+
+});

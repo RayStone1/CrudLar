@@ -11,12 +11,13 @@ class RegisterController extends Controller
 {
     public function show()
     {
+//        if(Auth::check()){
+//            return redirect(route('home'));
+//        }
         return view('register');
     }
-    public function register_user(RegisterRequest $request){
-        if(Auth::check()){
-            return redirect(route('home'));
-        }
+    public function register(RegisterRequest $request){
+
         $user=User::create([
             'name' => request()->name,
             'login' => request()->login,
