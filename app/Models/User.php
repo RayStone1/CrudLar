@@ -43,4 +43,7 @@ class User extends Authenticatable
     protected $casts = [
 
     ];
+    public function posts(){
+        return $this->hasMany(Post::class,'author_id');
+    }
 }

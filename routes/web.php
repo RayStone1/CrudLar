@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CabinetController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
@@ -24,8 +25,9 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/register', [RegisterController::class,'show'])->name('register');
     Route::get('/login', [LoginController::class,'show'])->name('login');
 });
-Route::get('/cabinet', [PostController::class,'show'])->name('cabinet')->middleware('user.check');
+Route::get('/cabinet', [CabinetController::class,'show'])->name('cabinet')->middleware('user.check');
 Route::get('/posts', [PostController::class,'index'])->name('posts');
+Route::get('/post/{post_id}', [PostController::class,'single'])->name('post');
 
 //Аутентификация
 Route::post('/register', [RegisterController::class,'register'])->name('register_user');
@@ -33,6 +35,7 @@ Route::post('/login', [LoginController::class,'login'])->name('login_user');
 Route::get('/logout', [LogoutController::class,'logout'])->name('logout');
 
 Route::name('post.')->group(function (){
-    Route::post('/create', [PostController::class,'create'])->name('create');
+    Route::post('/create', [CabinetController::class,'create'])->name('create');
+    Route::post('/delete', [CabinetController::class,'delete'])->name('delete');
 
 });

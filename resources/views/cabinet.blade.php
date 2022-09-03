@@ -44,6 +44,31 @@
                 </form>
             </div>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+                @if ($errors->any())
+
+                    <div class="alert alert-danger my-4">
+
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+
+                        </ul>
+
+                    </div>
+
+                @endif
+                @foreach($posts as $post)
+
+                    @include('./layout/card_user',['post'=>$post])
+                @endforeach
+
+            </div>
+            <div class="">
+                {{$posts->links()}}
+            </div>
+        </div>
     </div>
 @endsection
