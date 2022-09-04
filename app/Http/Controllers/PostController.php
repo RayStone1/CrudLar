@@ -17,9 +17,7 @@ class PostController extends Controller
         $posts=Post::orderBy('id','desc')->paginate(10);
         return view('posts',compact('posts'));
     }
-    public function single($post_id){
-
-        $post=Post::find($post_id);
+    public function single(Post $post){
         return view('post',compact('post'));
     }
 

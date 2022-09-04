@@ -37,4 +37,15 @@ class CabinetController extends Controller
             'post'=>'Не удалось удалить'
         ]);
     }
+    public function edit(Post $post){
+        return view('edit',compact('post'));
+    }
+    public function update(Post $post){
+        $validated = request()->validate([
+            'title' => 'string',
+            'description' => 'string',
+        ]);
+        $post->update($validated);
+        return redirect()->route('post',$post->id);
+    }
 }

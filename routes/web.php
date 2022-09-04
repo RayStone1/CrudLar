@@ -27,7 +27,8 @@ Route::middleware(['guest'])->group(function () {
 });
 Route::get('/cabinet', [CabinetController::class,'show'])->name('cabinet')->middleware('user.check');
 Route::get('/posts', [PostController::class,'index'])->name('posts');
-Route::get('/post/{post_id}', [PostController::class,'single'])->name('post');
+Route::get('/post/{post}', [PostController::class,'single'])->name('post');
+Route::get('/post/{post}/edit', [CabinetController::class,'edit'])->name('update')->middleware('user.check');
 
 //Аутентификация
 Route::post('/register', [RegisterController::class,'register'])->name('register_user');
@@ -37,5 +38,6 @@ Route::get('/logout', [LogoutController::class,'logout'])->name('logout');
 Route::name('post.')->group(function (){
     Route::post('/create', [CabinetController::class,'create'])->name('create');
     Route::post('/delete', [CabinetController::class,'delete'])->name('delete');
+    Route::patch('/update/{post}', [CabinetController::class,'update'])->name('update');
 
 });
